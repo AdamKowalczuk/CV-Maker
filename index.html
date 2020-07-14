@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>CV Creator</title>
+        <meta name="description" content="Professional CV Maker">
+        <meta name="author" content="Adam Kowalczuk">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+        <script type="text/javascript" src="jspdf.min.js"></script>
+        <script type="text/javascript" scr="html2canvas.min.js"></script>
+
+        
+
+        <style type="text/css">
+            *
+{
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+body
+{
+    color: white;
+    height: 100%;
+    background: url(wallpaper22.jpg) no-repeat center center fixed;
+    font-size: 14px;
+    line-height: 22px;
+}
+.top
+{
+    text-align: center;
+    height: 110px;
+}
+
+.text-area 
+{
+    margin: 0;
+    font-family: 'Concert One', cursive;
+    font-weight: 900;
+    font-size: 60px;
+    animation-name: changecolor;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;            
+    padding:10px;
+    line-height:1.5;
+    text-transform:uppercase;
+}
+@keyframes changecolor
+{
+    0%,100%{ text-shadow:0 0 30px red; }
+    25%{ text-shadow:0 0 30px orange; }
+    50%{ text-shadow:0 0 30px forestgreen; }
+    75%{ text-shadow:0 0 30px cyan; }
+}
+
+.main
+{
+    display: grid;
+    grid-template-columns:1fr 2fr 1fr;
+    text-align: center;
+}
+.left
+{
+   float: left; 
+   text-align: center;
+}
+
+.inputfile 
+{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label 
+{
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.no-js .inputfile + label 
+{
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label svg 
+{
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.inputfile-4 + label 
+{
+    color: #d3394c;
+}
+
+.inputfile-4:focus + label,
+.inputfile-4.has-focus + label,
+.inputfile-4 + label:hover 
+{
+    color: #722040;
+}
+
+.inputfile-4 + label figure 
+{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #d3394c;
+    display: block;
+    padding: 10px;
+    margin: 0 auto 10px;
+}
+
+.inputfile-4:focus + label figure,
+.inputfile-4.has-focus + label figure,
+.inputfile-4 + label:hover figure 
+{
+    background-color: #722040;
+}
+
+.inputfile-4 + label svg 
+{
+    width: 100%;
+    height: 100%;
+    fill: #f1e5e6;
+}
+.center
+{
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+h3
+{
+    clear: both;
+}
+input[type="color"]
+{
+    float: left;
+    margin-left: 100px;
+    width: 85px;
+    height: 85px;
+    background: none;
+    border:0px;
+}
+#social_icon11,#social_icon12,#social_icon13,#social_icon14,#social_icon15,#social_icon16,#social_icon17,#hobby_icon11,#hobby_icon12,#hobby_icon13,#hobby_icon14,#hobby_icon15,#hobby_icon16,#hobby_icon17,#hobby_icon18,
+#social_icon21,#social_icon22,#social_icon23,#social_icon24,#social_icon25,#social_icon26,#social_icon27,#hobby_icon21,#hobby_icon22,#hobby_icon23,#hobby_icon24,#hobby_icon25,#hobby_icon26,#hobby_icon27,#hobby_icon28,
+#social_icon31,#social_icon32,#social_icon33,#social_icon34,#social_icon35,#social_icon36,#social_icon37,#hobby_icon31,#hobby_icon32,#hobby_icon33,#hobby_icon34,#hobby_icon35,#hobby_icon36,#hobby_icon37,#hobby_icon38,
+#social_icon41,#social_icon42,#social_icon43,#social_icon44,#social_icon45,#social_icon46,#social_icon47,#hobby_icon41,#hobby_icon42,#hobby_icon43,#hobby_icon44,#hobby_icon45,#hobby_icon46,#hobby_icon47,#hobby_icon48
+{
+    float: left;
+    margin: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    font-size: 30px;
+}
+.bold
+{
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+ul
+{
+    margin-top: 20px;
+}
+.semi_bold
+{
+    font-weight: 400;
+    font-size: 16px;
+}
+.resume
+{
+    width: 800px;
+    height: auto;
+    display: flex;
+    margin: 50px auto;
+}
+.resume .resume_left
+{
+    width: 280px;
+    background: #0bb5f4;
+}
+.resume .resume_left .resume_profile
+{
+    width: 100%;
+    height: 280px;
+}
+.resume .resume_left .resume_profile img
+{
+    width: 100%;
+    height: 100%;
+}
+.resume .resume_left .resume_content
+{
+    padding:0 25px;
+}
+.resume .title
+{
+    margin-bottom: 20px;
+}
+.resume .resume_left .bold
+{
+    color: #fff;
+}
+.resume .resume_left .regular
+{
+    color: #fff;
+}
+.resume .resume_item
+{
+    padding: 25px 0;
+    border-bottom: 2px solid #fff;
+}
+.resume .resume_left .resume_item:last-child,
+.resume .resume_right .resume_item:last-child
+{
+    border-bottom: 0px;
+}
+.resume .resume_left ul li
+{
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.resume .resume_left ul li:last-child
+{
+   margin-bottom: 0; 
+}
+.resume .resume_left ul li .icon
+{
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    color: #0bb5f4;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-size: 16px;
+    position: relative;
+}
+.resume .icon i,
+.resume .resume_right .resume_hobby ul li i
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.resume .resume_left ul li .data
+{
+    color:#fff;
+}
+.resume .resume_left .resume_skills ul li
+{
+    display: flex;
+    margin-bottom: 10px;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+}
+.resume .resume_left .resume_skills ul li .skill_name
+{
+    width: 25%;
+}
+.resume .resume_left .resume_skills ul li .skill_progress
+{
+    width: 60%;
+    margin: 0 5px;
+    height: 5px;
+    background: #555555;
+    position: relative;
+}
+.resume .resume_left .resume_skills ul li .skill_per
+{
+    width: 15%;
+}
+.resume .resume_left .resume_skills ul li .skill_progress span
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #fff;
+}
+.resume .resume_left .resume_social .semi-bold 
+{
+    color: #fff;
+    margin-bottom: 3px;
+}
+.resume .resume_right
+{
+    width: 520px;
+    background: #fff;
+    padding: 25px;
+}
+.resume .resume_right .bold
+{
+    color:#0bb5f4;
+}
+.resume .resume_right .resume_work ul,
+.resume .resume_right .resume_education ul
+{
+   padding-left: 40px;
+   overflow: hidden; 
+}
+.resume .resume_right ul li
+{
+    position: relative;
+}
+.resume .resume_right ul li .date
+{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.resume .resume_right ul li .info
+{
+   margin-bottom: 20px; 
+}
+.resume .resume_right ul li:last-child .info
+{
+    margin-bottom: 0;
+}
+
+
+.resume .resume_right .resume_hobby ul
+{
+    display: flex;
+    justify-content: space-between;
+}
+.resume .resume_right .resume_hobby ul li
+{
+    width: 80px;
+    height: 80px;
+    border: 2px solid ;
+    border-color: #555555;
+    border-radius: 50%;
+    position: relative;
+    color:#0bb5f4;
+}
+.resume .resume_right .resume_hobby ul li i
+{
+    font-size: 30px;
+}
+.resume .resume_right .resume_hobby ul li:before
+{
+   content: "";
+   position: absolute;
+   top: 40px;
+   right: -52px;
+   width: 50px;
+   height: 2px;
+   background: #555555; 
+}
+.resume .resume_right .resume_hobby ul li:last-child:before
+{
+    display: none;
+}
+
+
+#span_name 
+{
+    position: relative;
+    display: inline-block;
+    margin: 5px 10px;
+}
+.basic-slide 
+{
+    display: inline-block;
+    width: 200px;
+    padding: 10px 0 10px 15px;
+    color: #377D6A;
+    background: #fff;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    text-indent: 70px;
+    transition: all .3s ease-in-out; 
+}
+.basic-slide::placeholder 
+{
+    color: #efefef;
+    text-indent: 0;
+    font-weight: 300;
+    font-size: 14px;
+}
+.basic-slide ~ label
+{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 7.5px 10px;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(3, 14, 13, 0.4);
+    transition: all .3s ease-in-out;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.basic-slide ~ #label_name 
+{
+    background: #d3394c;
+    color: #fff;
+}
+.basic-slide ~ #label_skill 
+{
+    background: #001F3F;
+    color: #01FF70;
+}
+.basic-slide ~ #label_media
+{
+    background: #E08119;
+    color: #000000;
+}
+.basic-slide ~ #label_work
+{
+    background: #8365c1;
+    color: #ffffff;
+    left: 0;
+    right: auto;
+}
+.basic-slide ~ #label_education
+{
+    background: #03DAC6;
+    color: #000036;
+    left: 0;
+    right: auto;
+}
+
+.basic-slide:focus::-webkit-input-placeholder,
+.basic-slide:active::-webkit-input-placeholder
+{
+    color: rgb(0, 0, 0);
+}
+.basic-slide:focus ~ label,
+.basic-slide:active ~ label
+{
+    transform: translateX(100%);
+}
+.basic-slide:focus ~ #label_work,.basic-slide:active ~ #label_work,
+.basic-slide:focus ~ #label_education,.basic-slide:active ~ #label_education
+{
+    transform: translateX(-100%);
+}
+
+.change_color1,.change_color2,.change_color3,.change_color4
+{
+    display: none;
+}
+.change_color1:checked + label .button-small,.change_color2:checked + label .button-small,.change_color3:checked + label .button-small,.change_color4:checked + label .button-small
+{
+    background-image: linear-gradient(to right bottom, #abb7b7 ,#dadfe1);
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,.1),
+    inset -2px -2px 4px rgba(255, 255,255, .4);
+}
+
+.btn-change 
+{
+    border: none;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #222;
+    padding: 10px 60px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+.btn-change span 
+{
+    position: relative; 
+    z-index: 1;
+}
+.btn-change:after 
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 650%;
+    width: 140%;
+    background: #78c7d2;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+#change1:after 
+{
+    background: #d3394c;
+}
+#change2:after 
+{
+    background: #01FF70;
+}
+#change3:after 
+{
+    background: #E08119;
+}
+#change4:after 
+{
+    background: #FFF000;
+}
+#change5:after 
+{
+    background: #8365c1;
+}
+#change6:after 
+{
+    background: #03DAC6;
+}
+.btn-change:hover:after 
+{
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+textarea
+{
+    margin-top: 10px;
+    text-align: center;
+    width: 250px;
+    height: 60px;
+    background: black;
+    border: 5px dashed ;
+    border-color: #FFF000;
+    padding: 5px;
+    color: #FFF000;
+}
+textarea::placeholder
+{
+    color: #FFF000;
+}
+
+
+button:focus {outline:0;}
+    .coolass_button{
+        top: 60px;
+        width: 250px;
+        height: 50px;
+        background: linear-gradient(to right, #0099CC 0%,#0099CC 50%,#7bff56 50%,#7bff56 100%);
+        background-size: 200%;
+        border-radius: 5px;
+        border:none;
+        display: block;
+        margin: auto;
+        position: relative;
+        transition: all .5s;
+        overflow: hidden;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 500;
+        margin-top: 0px;
+        will-change:all;
+        transition-timing-function:ease;
+    }
+    .coolass_button:hover{
+        box-shadow: 0px 6px 10px
+    }
+    .coolass_button_first{
+        background-position: 100%;
+        height: 25px;
+        transform:translateY(25px);
+        color:transparent;
+    }
+    .coolass_button_bridge1{
+        background: #7bff56;
+        background-position: 0%;
+        transition: none; 
+    }
+    .coolass_button_second{
+        background: linear-gradient(to right, #7bff56 0%,#7bff56 50%,#7bff56 50%,#63bc40 50%,#63bc40 50%,#63bc40 100%);
+        background-size: 200%;
+        transition: all 1.2s;
+    }
+    .coolass_button_third{
+        background-position: -100%;
+    }
+    .coolass_button_final{
+        transition: all .5s;
+        margin-top: 0px;
+        height: 50px;
+        transform:translateY(0px);
+        color:rgba(62, 117, 41, 0.61);
+    }
+    .coolass_button:after{
+        content: 'Success!';
+        position: absolute;
+        right: -100%;
+        opacity: 0;
+        width: 100%;
+        top:22%;
+        margin: 0px;
+        color: white;
+        font-size: 2em;
+        transition: all .5s;
+    }
+    .coolass_button_final:after{
+        right: 0%;
+        opacity: 1;
+    }
+    .coolass_button:before{
+        content: 'Download PDF';
+        position: absolute;
+        left: 0%;
+        width: 100%;
+        top:22%;
+        margin: 0px;
+        color: white;
+        font-size: 2em;
+        transition: all .5s;
+        color: #fff;
+    }
+    .coolass_button_first:before{
+        left: -100%;
+        opacity: 0;
+    }
+
+.cool_holder{
+  height:100px;
+}
+
+
+
+nav menuitem {
+   position:relative;
+   display:block;
+   opacity:0;
+   cursor:pointer;
+}
+
+nav menuitem > menu {
+   position: absolute;
+   pointer-events:none;
+}
+nav > menu { display:flex; }
+
+nav > menu > menuitem { pointer-events: all; opacity:1; }
+menu menuitem a { white-space:nowrap; display:block; }
+   
+menuitem:hover > menu {
+   pointer-events:initial;
+}
+menuitem:hover > menu > menuitem,
+menu:hover > menuitem{
+   opacity:1;
+}
+#navmedia > menu > menuitem menuitem menu {
+   transform:translateX(100%);
+   top:0; right:0;
+}
+#navhobby > menu > menuitem menuitem menu
+{
+    transform:translateX(-100%);
+    top:0; right:0;
+}
+#navmedia 
+{ 
+   margin-top: 40px;
+   margin-left: 40px;
+}
+#navhobby
+{
+    margin-top: -68px;
+    margin-left: 540px;
+}
+nav a {
+   background:#75F;
+   color:#FFF;
+   min-width:190px;
+   transition: background 0.5s, color 0.5s, transform 0.5s;
+   margin:0px 6px 6px 0px;
+   padding:20px 40px;
+   box-sizing:border-box;
+   border-radius:3px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+   position:relative;
+}
+
+nav a:active:before {
+   content: '';
+   top:0;left:0;
+   position:absolute;
+   background:rgba(0, 0, 0, 0.2);
+   width:100%;
+   height:100%;
+}
+#navmedia > menu > menuitem > a + menu:after{
+   content: '';
+   position:absolute;
+   border:10px solid transparent;
+   border-top: 10px solid #fff;
+   left:12px;
+   top: -40px;  
+}
+#navhobby > menu > menuitem > a + menu:after
+{
+    content: '';
+    position:absolute;
+    border:10px solid transparent;
+    border-top: 10px solid #fff;
+    right:16px;
+    top: -40px; 
+}
+#navmedia menuitem > menu > menuitem > a + menu:after{ 
+   content: '';
+   position:absolute;
+   border:10px solid transparent;
+   border-left: 10px solid #fff;
+   top: 20px;
+   left:-180px;
+   transition: opacity 0.6, transform 0s;
+}
+#navhobby menuitem > menu > menuitem > a + menu:after{ 
+    content: '';
+    position:absolute;
+    border:10px solid transparent;
+    border-right: 10px solid #fff;
+    top: 20px;
+    left: 330px;
+    transition: opacity 0.6, transform 0s;
+ }
+nav > menu > menuitem > menu > menuitem{
+   transition: transform 0.6s, opacity 0.6s;
+   transform:translateY(150%);
+   opacity:0;
+}
+nav > menu > menuitem:hover > menu > menuitem,
+nav > menu > menuitem.hover > menu > menuitem{
+   transform:translateY(0%);
+   opacity: 1;
+}
+menuitem > menu > menuitem > menu > menuitem{
+   transition: transform 0.6s, opacity 0.6s;
+   transform:translateX(195px) translateY(0%);
+   opacity: 0;
+} 
+menuitem > menu > menuitem:hover > menu > menuitem,  
+menuitem > menu > menuitem.hover > menu > menuitem{  
+   transform:translateX(0) translateY(0%);
+   opacity: 1;
+}
+
+
+.icon-container .icon
+{
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-left: -100px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.icon-container .icon::before, .icon-container .icon::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.25s ease;
+    border-radius: 100%;
+}
+.icon-container i
+{
+    position: relative;
+    color: #fff;
+    font-size: 40px;
+    margin-top: 20px;
+    transition: all 0.25s ease;
+}
+.icon-fill1::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px red;
+}
+.icon-fill1:hover::before{
+    box-shadow: inset 0 0 0 100px red;
+}
+.icon-fill2::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #0074D9;
+}
+.icon-fill2:hover::before{
+    box-shadow: inset 0 0 0 100px #0074D9;
+}
+.icon-fill3::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #01FF70;
+}
+.icon-fill3:hover::before{
+    box-shadow: inset 0 0 0 100px #01FF70;
+}
+.icon-fill4::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #F012BE;
+}
+.icon-fill4:hover::before{
+    box-shadow: inset 0 0 0 100px #F012BE;
+}
+.icon-fill5::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #AAAAAA;
+}
+.icon-fill5:hover::before{
+    box-shadow: inset 0 0 0 100px #AAAAAA;
+}
+.icon-fill6::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #FFDC00;
+}
+.icon-fill6:hover::before{
+    box-shadow: inset 0 0 0 100px #FFDC00;
+}
+.icon-fill7::before{
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 5px #39CCCC;
+}
+.icon-fill7:hover::before{
+    box-shadow: inset 0 0 0 100px #39CCCC;
+}
+
+        </style>
+</head>
+<body>
+    <div class="top">
+        <h1 class="text-area">CV Creator</h1>
+    </div>
+    <div class="main">
+        <div class="left">
+            <input type="file" onchange="readURL(this);" name="file-5[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
+            <label for="file-5"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span>Choose a file&hellip;</span></label>
+            
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field1" placeholder="First and last name"><label id="label_name" for="name">First and last name</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field2" placeholder="Position"><label id="label_name" for="name">Position</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field3" placeholder="Address"><label  id="label_name"for="name">Address</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field4" placeholder="Phone"><label id="label_name" for="name">Phone</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field5" placeholder="E-mail"><label id="label_name" for="name">E-mail</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field6" placeholder="Website"><label id="label_name" for="name">Website</label>
+            </span><br>
+            <button id="change1" class="btn-change"><span>Change</span></button>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field21" placeholder="Skills"><label id="label_skill" for="name">Skills</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field22" placeholder="Percentages"><label id="label_skill" for="name">Percentages</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field23" placeholder="Skills"><label id="label_skill" for="name">Skills</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field24" placeholder="Percentages"><label id="label_skill"for="name">Percentages</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field25" placeholder="Skills"><label id="label_skill" for="name">Skills</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field26" placeholder="Percentages"><label id="label_skill" for="name">Percentages</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field27" placeholder="Skills"><label id="label_skill" for="name">Skills</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field28" placeholder="Percentages"><label id="label_skill" for="name">Percentages</label>
+            </span><br>
+            <button id="change2" class="btn-change"><span>Change</span></button>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field31" placeholder="Social media"><label id="label_media" for="name">Social media</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field32" placeholder="Link"><label id="label_media" for="name">Link</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field33" placeholder="Social media"><label id="label_media" for="name">Social media</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field34" placeholder="Link"><label id="label_media" for="name">Link</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field35" placeholder="Social media"><label id="label_media" for="name">Social media</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field36" placeholder="Link"><label id="label_media" for="name">Link</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field37" placeholder="Social media"><label id="label_media" for="name">Social media</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field38" placeholder="Link"><label id="label_media" for="name">Link</label>
+            </span><br>
+            <button id="change3" class="btn-change"><span>Change</span></button>
+        </div>
+        <div class="center">
+            <div onclick="genPDF()" class="cool_holder">
+                <button  class="coolass_button" id="coolbutton"></button>
+            </div>
+            <button onclick="ExportPdf()" style="width:100px;height:100px;background-color: red;"></button>
+            <div class="resume">
+                <div class="resume_left">
+                    <div class="resume_profile">
+                        <img id="photo"/>
+                    </div>
+                    <div class="resume_content">
+                        <div class="resume_item resume_info">
+                            <div id="title">
+                                <p class="bold" id="name">John Smith</p>
+                                <p class="regular" id="position">Junior-Frontend-Developer</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="icon"><i class="fas fa-map-signs"></i></div>
+                                    <div class="data" id="addres">
+                                        13 Street, New York City </br> USA
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="data" id="phone">
+                                        +324 11122349
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="data" id="email">
+                                        johnsmith@gmail.com
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><i class="fab fa-weebly"></i></div>
+                                    <div class="data" id="website">
+                                        www.johnsmith.com
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="resume_item resume_skills">
+                            <div id="title">
+                                <p class="bold">skill's</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="skill_name" id="skill1">
+                                        HTML
+                                    </div>
+                                    <div class="skill_progress">
+                                        <span style="width:80%;" id="skillprogress1"></span>
+                                    </div>
+                                    <div class="skill_per" id="percent1">80%</div>
+                                </li>
+                                <li>
+                                    <div class="skill_name" id="skill2">
+                                        CSS
+                                    </div>
+                                    <div class="skill_progress">
+                                        <span style="width:70%;" id="skillprogress2"></span>
+                                    </div>
+                                    <div class="skill_per" id="percent2">70%</div>
+                                </li>
+                                <li>
+                                    <div class="skill_name" id="skill3">
+                                        JS
+                                    </div>
+                                    <div class="skill_progress">
+                                        <span style="width:50%;" id="skillprogress3"></span>
+                                    </div>
+                                    <div class="skill_per" id="percent3">50%</div>
+                                </li>
+                                <li>
+                                    <div class="skill_name" id="skill4">
+                                        PHP
+                                    </div>
+                                    <div class="skill_progress">
+                                        <span style="width:30%;" id="skillprogress4"></span>
+                                    </div>
+                                    <div class="skill_per" id="percent4">30%</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="resume_item resume_social">
+                            <div class="title">
+                                <p class="bold">Social</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="icon" id="icon_background1">
+                                        <i class="fab fa-facebook" id="social_icon1"></i>
+                                    </div>
+                                    <div class="data">
+                                        <p class="semi_bold" id="socialname1">Facebook</p>
+                                        <p id="sociallink1">johnsmith@facebook</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon" id="icon_background2">
+                                        <i class="fab fa-twitter" id="social_icon2"></i>
+                                    </div>
+                                    <div class="data">
+                                        <p class="semi_bold" id="socialname2">Twitter</p>
+                                        <p id="sociallink2">johnsmith@twitter</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon" id="icon_background3">
+                                        <i class="fab fa-youtube" id="social_icon3"></i>
+                                    </div>
+                                    <div class="data">
+                                        <p class="semi_bold" id="socialname3">Youtube</p>
+                                        <p id="sociallink3">johnsmith@youtube</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon" id="icon_background4">
+                                        <i class="fab fa-linkedin" id="social_icon4"></i>
+                                    </div>
+                                    <div class="data">
+                                        <p class="semi_bold" id="socialname4">Linkedin</p>
+                                        <p id="sociallink4">johnsmith@linkedin</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume_right">
+                    <div class="resume_item resume_about">
+                        <div class="title">
+                            <p class="bold">About Me</p>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores assumenda repellat nesciunt 
+                                ratione tempora fugit amet, quod, earum vel voluptate iure? At dolores pariatur autem consequatur.
+                                Facilis sit odit, molestias voluptas recusandae dolores harum voluptatum autem itaque neque debitis
+                                non aspernatur, dolore doloremque, vero animi blanditiis fugiat reprehenderit cumque ducimus?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="resume_item resume_work">
+                        <div class="title">
+                            <p class="bold">Work Experience</p>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="date" id="workdate1">2018 - 2019</div>
+                                <div class="info">
+                                    <p class="semi_bold" id="workposition1">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p id="workdescription1">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                    Quod, id quis asperiores voluptas labore nihil vel eius!</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="date" id="workdate2">2019 - Present</div>
+                                <div class="info">
+                                    <p class="semi_bold" id="workposition2">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p id="workdescription2">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                    Quod, id quis asperiores voluptas labore nihil vel eius!</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="resume_item resume_education">
+                        <div class="title">
+                            <p class="bold">Education</p>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="date" id="educationdate1">2010 - 2012</div>
+                                <div class="info">
+                                    <p class="semi_bold" id="educationposition1">Warsaw University of Technology</p>
+                                    <p id="educationdescription1">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Sint quaerat quasi ad veritatis et, natus corporis?</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="date" id="educationdate2">2012 - 2014</div>
+                                <div class="info">
+                                    <p class="semi_bold" id="educationposition2">Warsaw University of Life Sciences</p>
+                                    <p id="educationdescription2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Sint quaerat quasi ad veritatis et, natus corporis?</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="resume_item resume_hobby">
+                        <div class="title">
+                            <p class="bold">Hobby</p>
+                        </div>
+                        <ul>
+                            <li id="hobby_background1"><i class="fas fa-book" id="hobby_icon1"></i></li>
+                            <li id="hobby_background2"><i class="fab fa-pagelines" id="hobby_icon2"></i></li>
+                            <li id="hobby_background3"><i class="fas fa-gamepad" id="hobby_icon3"></i></li>
+                            <li id="hobby_background4"><i class="fas fa-music" id="hobby_icon4"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <nav id="navmedia">
+                <menu>
+                    <menuitem>
+                        <a>Select social media icon</a>
+                        <menu>
+                            <menuitem><a>1) Social media icon</a>
+                                <menu>
+                                    <menuitem id="menuitem11"><a>Linkedin<i class="fab fa-linkedin" id="social_icon11"></i></a></menuitem>
+                                    <menuitem id="menuitem12"><a>Facebook<i class="fab fa-facebook" id="social_icon12"></i></a></menuitem>
+                                    <menuitem id="menuitem13"><a>Twitter<i class="fab fa-twitter" id="social_icon13"></i></a></menuitem>
+                                    <menuitem id="menuitem14"><a>Youtube<i class="fab fa-youtube" id="social_icon14"></i></a></menuitem>
+                                    <menuitem id="menuitem15"><a>Github<i class="fab fa-github" id="social_icon15"></i></a></menuitem>
+                                    <menuitem id="menuitem16"><a>Instagram<i class="fab fa-instagram" id="social_icon16"></i></a></menuitem>
+                                    <menuitem id="menuitem17"><a>Delete icon<i class="fas fa-trash-alt" id="social_icon17"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                            <menuitem><a>2) Social media icon</a>
+                                <menu>
+                                    <menuitem id="menuitem21"><a>Linkedin<i class="fab fa-linkedin" id="social_icon21"></i></a></menuitem>
+                                    <menuitem id="menuitem22"><a>Facebook<i class="fab fa-facebook" id="social_icon22"></i></a></menuitem>
+                                    <menuitem id="menuitem23"><a>Twitter<i class="fab fa-twitter" id="social_icon23"></i></a></menuitem>
+                                    <menuitem id="menuitem24"><a>Youtube<i class="fab fa-youtube" id="social_icon24"></i></a></menuitem>
+                                    <menuitem id="menuitem25"><a>Github<i class="fab fa-github" id="social_icon25"></i></a></menuitem>
+                                    <menuitem id="menuitem26"><a>Instagram<i class="fab fa-instagram" id="social_icon26"></i></a></menuitem>
+                                    <menuitem id="menuitem27"><a>Delete icon<i class="fas fa-trash-alt" id="social_icon27"></i></a></menuitem>
+                                </menu>
+                            </menuitem>
+                            <menuitem><a>3) Social media icon</a>
+                                <menu>
+                                    <menuitem id="menuitem31"><a>Linkedin<i class="fab fa-linkedin" id="social_icon31"></i></a></menuitem>
+                                    <menuitem id="menuitem32"><a>Facebook<i class="fab fa-facebook" id="social_icon32"></i></a></menuitem>
+                                    <menuitem id="menuitem33"><a>Twitter<i class="fab fa-twitter" id="social_icon33"></i></a></menuitem>
+                                    <menuitem id="menuitem34"><a>Youtube<i class="fab fa-youtube" id="social_icon34"></i></a></menuitem>
+                                    <menuitem id="menuitem35"><a>Github<i class="fab fa-github" id="social_icon35"></i></a></menuitem>
+                                    <menuitem id="menuitem36"><a>Instagram<i class="fab fa-instagram" id="social_icon36"></i></a></menuitem>
+                                    <menuitem id="menuitem37"><a>Delete icon<i class="fas fa-trash-alt" id="social_icon37"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                            <menuitem><a>4) Social media icon</a>
+                                <menu>
+                                    <menuitem id="menuitem41"><a>Linkedin<i class="fab fa-linkedin" id="social_icon41"></i></a></menuitem>
+                                    <menuitem id="menuitem42"><a>Facebook<i class="fab fa-facebook" id="social_icon42"></i></a></menuitem>
+                                    <menuitem id="menuitem43"><a>Twitter<i class="fab fa-twitter" id="social_icon43"></i></a></menuitem>
+                                    <menuitem id="menuitem44"><a>Youtube<i class="fab fa-youtube" id="social_icon44"></i></a></menuitem>
+                                    <menuitem id="menuitem45"><a>Github<i class="fab fa-github" id="social_icon45"></i></a></menuitem>
+                                    <menuitem id="menuitem46"><a>Instagram<i class="fab fa-instagram" id="social_icon46"></i></a></menuitem>
+                                    <menuitem id="menuitem47"><a>Delete icon<i class="fas fa-trash-alt" id="social_icon47"></i></a></menuitem>
+                                </menu>
+                            </menuitem>
+                        </menu>
+                    </menuitem>
+                </menu>
+            </nav>
+            <nav id="navhobby">
+                <menu>
+                    <menuitem>
+                        <a>Select hobby icon</a>
+                        <menu>
+                            <menuitem><a>1) Hobby icon</a>
+                                <menu>
+                                    <menuitem id="hobbymenuitem11"><a>Science<i class="fas fa-book" id="hobby_icon11"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem12"><a>Sport<i class="fas fa-dumbbell" id="hobby_icon12"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem13"><a>IT<i class="fas fa-laptop" id="hobby_icon13"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem14"><a>Art<i class="fas fa-palette" id="hobby_icon14"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem15"><a>Music<i class="fas fa-music" id="hobby_icon15"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem16"><a>Animals<i class="fas fa-paw" id="hobby_icon16"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem17"><a>Travels<i class="fas fa-plane" id="hobby_icon17"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                            <menuitem><a>2) Hobby icon</a>
+                                <menu>
+                                    <menuitem id="hobbymenuitem21"><a>Science<i class="fas fa-book" id="hobby_icon11"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem22"><a>Sport<i class="fas fa-dumbbell" id="hobby_icon12"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem23"><a>IT<i class="fas fa-laptop" id="hobby_icon13"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem24"><a>Art<i class="fas fa-palette" id="hobby_icon14"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem25"><a>Music<i class="fas fa-music" id="hobby_icon15"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem26"><a>Animals<i class="fas fa-paw" id="hobby_icon16"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem27"><a>Travels<i class="fas fa-plane" id="hobby_icon17"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                            <menuitem><a>3) Hobby icon</a>
+                                <menu>
+                                    <menuitem id="hobbymenuitem31"><a>Science<i class="fas fa-book" id="hobby_icon11"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem32"><a>Sport<i class="fas fa-dumbbell" id="hobby_icon12"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem33"><a>IT<i class="fas fa-laptop" id="hobby_icon13"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem34"><a>Art<i class="fas fa-palette" id="hobby_icon14"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem35"><a>Music<i class="fas fa-music" id="hobby_icon15"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem36"><a>Animals<i class="fas fa-paw" id="hobby_icon16"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem37"><a>Travels<i class="fas fa-plane" id="hobby_icon17"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                            <menuitem>
+                                <a>4) Hobby icon</a>
+                                <menu>
+                                    <menuitem id="hobbymenuitem41"><a>Science<i class="fas fa-book" id="hobby_icon11"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem42"><a>Sport<i class="fas fa-dumbbell" id="hobby_icon12"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem43"><a>IT<i class="fas fa-laptop" id="hobby_icon13"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem44"><a>Art<i class="fas fa-palette" id="hobby_icon14"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem45"><a>Music<i class="fas fa-music" id="hobby_icon15"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem46"><a>Animals<i class="fas fa-paw" id="hobby_icon16"></i></a></menuitem>
+                                    <menuitem id="hobbymenuitem47"><a>Travels<i class="fas fa-plane" id="hobby_icon17"></i></a></menuitem>
+                                 </menu>
+                            </menuitem>
+                        </menu>
+                    </menuitem>
+                </menu>
+            </nav>
+        </div>
+        <div class="right">
+            <textarea type="text" name="field4" placeholder='"About me" description'></textarea><br>
+            <button id="change4" class="btn-change"><span>Change</span></button>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field51" placeholder="Work period"><label id="label_work" for="name">Work period</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field52" placeholder="Position"><label id="label_work" for="name">Position</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field53" placeholder="Description"><label id="label_work" for="name">Description</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field54" placeholder="Work period"><label id="label_work" for="name">Work period</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field55" placeholder="Position"><label id="label_work" for="name">Position</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field56" placeholder="Description"><label id="label_work" for="name">Description</label>
+            </span><br>
+            <button id="change5" class="btn-change"><span>Change</span></button>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field61" placeholder="Work period"><label id="label_education" for="name">Work period</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field62" placeholder="School"><label id="label_education" for="name">School</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field63" placeholder="Description"><label id="label_education" for="name">Description</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field64" placeholder="Work period"><label id="label_education" for="name">Work period</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field65" placeholder="School"><label id="label_education" for="name">School</label>
+            </span>
+            <span id="span_name">
+                <input class="basic-slide" type="text" name="field66" placeholder="Description"><label id="label_education" for="name">Description</label>
+            </span><br>
+            <button id="change6" class="btn-change"><span>Change</span></button>
+            
+            <h3>Left side background</h3>
+            <input type="color" id="input_color1" value="#ff0000">
+            <div class="icon-container">
+                <div class="icon icon-fill1"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            
+            <h3>Left side text</h3>
+            <input type="color" id="input_color2" value="#0074D9">
+            <div class="icon-container">
+                <div class="icon icon-fill2"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            <h3>Right side text</h3>
+            <input type="color" id="input_color3" value="#01FF70">
+            <div class="icon-container">
+                <div class="icon icon-fill3"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            <h3>Right side background</h3>
+            <input type="color" id="input_color4" value="#F012BE">
+            <div class="icon-container">
+                <div class="icon icon-fill4"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            <h3>Icons color</h3>
+            <input type="color" id="input_color5" value="#AAAAAA">
+            <div class="icon-container">
+                <div class="icon icon-fill5"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            <h3>Right side headers</h3>
+            <input type="color" id="input_color6" value="#FFDC00">
+            <div class="icon-container">
+                <div class="icon icon-fill6"><i class="fas fa-paint-roller"></i></div>
+            </div>
+            <h3>Left side icon background</h3>
+            <input type="color" id="input_color7" value="#39CCCC">
+            <div class="icon-container">
+                <div class="icon icon-fill7"><i class="fas fa-paint-roller"></i></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#photo')
+                        .attr('src', e.target.result)
+                        .width(280)
+                        .height(280);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        $(document).ready(function(){
+        $("#change1").click(function(){
+            $("#name").text($('input[name="field1"]').val());
+            $("#position").text($('input[name="field2"]').val());
+            $("#addres").text($('input[name="field3"]').val());
+            $("#phone").text($('input[name="field4"]').val());
+            $("#email").text($('input[name="field5"]').val());
+            $("#website").text($('input[name="field6"]').val());
+        });
+
+        $("#change2").click(function(){
+            $("#skill1").text($('input[name="field21"]').val());
+            $("#percent1").text($('input[name="field22"]').val());
+            $("#skillprogress1").css("width",$('input[name="field22"]').val()+"%");
+            $("#skill2").text($('input[name="field23"]').val());
+            $("#percent2").text($('input[name="field24"]').val());
+            $("#skillprogress2").css("width",$('input[name="field24"]').val()+"%");
+            $("#skill3").text($('input[name="field25"]').val());
+            $("#percent3").text($('input[name="field26"]').val());
+            $("#skillprogress3").css("width",$('input[name="field26"]').val()+"%");
+            $("#skill4").text($('input[name="field27"]').val());
+            $("#percent4").text($('input[name="field28"]').val());
+            $("#skillprogress4").css("width",$('input[name="field28"]').val()+"%");
+        });
+
+        $("#change3").click(function(){
+            $("#socialname1").text($('input[name="field31"]').val());
+            $("#sociallink1").text($('input[name="field32"]').val());
+            $("#socialname2").text($('input[name="field33"]').val());
+            $("#sociallink2").text($('input[name="field34"]').val());
+            $("#socialname3").text($('input[name="field35"]').val());
+            $("#sociallink3").text($('input[name="field36"]').val());
+            $("#socialname4").text($('input[name="field37"]').val());
+            $("#sociallink4").text($('input[name="field38"]').val());
+        });
+
+        $("#change4").click(function(){
+            $(".description").text($('textarea[name="field4"]').val());
+        });
+
+        $("#change5").click(function(){
+            $("#workdate1").text($('input[name="field51"]').val());
+            $("#workposition1").text($('input[name="field52"]').val());
+            $("#workdescription1").text($('input[name="field53"]').val());
+            $("#workdate2").text($('input[name="field54"]').val());
+            $("#workposition2").text($('input[name="field55"]').val());
+            $("#workdescription2").text($('input[name="field56"]').val());
+        });
+
+        $("#change6").click(function(){
+            $("#educationdate1").text($('input[name="field61"]').val());
+            $("#educationposition1").text($('input[name="field62"]').val());
+            $("#educationdescription1").text($('input[name="field63"]').val());
+            $("#educationdate2").text($('input[name="field64"]').val());
+            $("#educationposition2").text($('input[name="field65"]').val());
+            $("#educationdescription2").text($('input[name="field66"]').val());
+        });
+
+        $('.icon-fill1').click(function(){
+            $(".resume_left,.resume_education ul li:after,.resume_hobby ul li:before").css("background",$("#input_color1").val());
+        });
+        $('.icon-fill2').click(function(){
+            $(".resume .resume_left .bold,.resume .resume_left .regular,.resume .resume_left ul li .data,.resume .resume_left .resume_skills ul li,.resume .resume_left .resume_social .semi-bold").css("color",$("#input_color2").val());
+        });
+        $('.icon-fill3').click(function(){
+            $(".resume .resume_right .date,.resume .resume_right .info,.resume .resume_right .resume_about .description").css("color",$("#input_color3").val());
+        });
+        $('.icon-fill4').click(function(){
+            $(".resume .resume_right").css("background",$("#input_color4").val());
+        });
+        $('.icon-fill5').click(function(){
+            $(".resume .resume_left ul li .icon,.resume .resume_right .resume_hobby ul li").css("color",$("#input_color5").val());
+        });
+        $('.icon-fill6').click(function(){
+            $(".resume .resume_right .bold").css("color",$("#input_color6").val());
+        });
+        $('.icon-fill7').click(function(){
+            $(".resume .resume_left .icon").css("background",$("#input_color7").val());
+        });
+        
+
+        
+
+        $("#menuitem11 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-linkedin");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem12 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-facebook");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem13 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-twitter");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem14 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-youtube");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem15 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-github");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem16 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("fab fa-instagram");
+            $("#icon_background1").removeClass().addClass("icon");
+        });
+        $("#menuitem17 a").click(function()
+        {
+            $("#social_icon1").removeClass().addClass("");
+            $("#icon_background1").removeClass().addClass("");
+        });
+
+        $("#menuitem21 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-linkedin");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem22 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-facebook");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem23 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-twitter");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem24 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-youtube");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem25 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-github");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem26 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("fab fa-instagram");
+            $("#icon_background2").removeClass().addClass("icon");
+        });
+        $("#menuitem27 a").click(function()
+        {
+            $("#social_icon2").removeClass().addClass("");
+            $("#icon_background2").removeClass().addClass("");
+        });
+        
+
+        $("#menuitem31 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-linkedin");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem32 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-facebook");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem33 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-twitter");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem34 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-youtube");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem35 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-github");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem36 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("fab fa-instagram");
+            $("#icon_background3").removeClass().addClass("icon");
+        });
+        $("#menuitem37 a").click(function()
+        {
+            $("#social_icon3").removeClass().addClass("");
+            $("#icon_background3").removeClass().addClass("");
+        });
+
+        $("#menuitem41 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-linkedin");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem42 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-facebook");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem43 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-twitter");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem44 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-youtube");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem45 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-github");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem46 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("fab fa-instagram");
+            $("#icon_background4").removeClass().addClass("icon");
+        });
+        $("#menuitem47 a").click(function()
+        {
+            $("#social_icon4").removeClass().addClass("");
+            $("#icon_background4").removeClass().addClass("");
+        });
+
+        
+        $("#hobbymenuitem11 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-book");
+        });
+        $("#hobbymenuitem12 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-dumbbell");
+        });
+        $("#hobbymenuitem13 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-laptop");
+        });
+        $("#hobbymenuitem14 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-palette");
+        });
+        $("#hobbymenuitem15 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-music");
+        });
+        $("#hobbymenuitem16 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-paw");
+        });
+        $("#hobbymenuitem17 a").click(function()
+        {
+            $("#hobby_icon1").removeClass().addClass("fas fa-plane");
+        });
+
+        $("#hobbymenuitem21 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-book");
+        });
+        $("#hobbymenuitem22 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-dumbbell");
+        });
+        $("#hobbymenuitem23 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-laptop");
+        });
+        $("#hobbymenuitem24 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-palette");
+        });
+        $("#hobbymenuitem25 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-music");
+        });
+        $("#hobbymenuitem26 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-paw");
+        });
+        $("#hobbymenuitem27 a").click(function()
+        {
+            $("#hobby_icon2").removeClass().addClass("fas fa-plane");
+        });
+
+        $("#hobbymenuitem31 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-book");
+        });
+        $("#hobbymenuitem32 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-dumbbell");
+        });
+        $("#hobbymenuitem33 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-laptop");
+        });
+        $("#hobbymenuitem34 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-palette");
+        });
+        $("#hobbymenuitem35 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-music");
+        });
+        $("#hobbymenuitem36 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-paw");
+        });
+        $("#hobbymenuitem37 a").click(function()
+        {
+            $("#hobby_icon3").removeClass().addClass("fas fa-plane");
+        });
+
+        $("#hobbymenuitem41 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-book");
+        });
+        $("#hobbymenuitem42 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-dumbbell");
+        });
+        $("#hobbymenuitem43 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-laptop");
+        });
+        $("#hobbymenuitem44 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-palette");
+        });
+        $("#hobbymenuitem45 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-music");
+        });
+        $("#hobbymenuitem46 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-paw");
+        });
+        $("#hobbymenuitem47 a").click(function()
+        {
+            $("#hobby_icon4").removeClass().addClass("fas fa-plane");
+        });
+
+        
+        
+        
+
+    });
+        (function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);
+        
+        function genPDF()
+        {
+            html2canvas(document.getElementsByClassName("resume"), {
+                onrendered: function(canvas){
+
+                    var img = canvas.toDataURL("image/png");
+                    var doc = new jsPDF();
+                    doc.addImage(img, 'PNG',0,0);
+                    doc.save("CV.pdf");
+                }
+            });
+        }
+
+        
+        var coolbutton = document.getElementById('coolbutton');
+        var inprogress = false;
+        coolbutton.onclick = function(){
+        if (inprogress) {
+            return false;
+        }
+        inprogress = true
+        coolbutton.classList.add('coolass_button_first');
+        setTimeout(function(){
+        coolbutton.classList.add('coolass_button_bridge1');
+        },500);
+        setTimeout(function(){
+        coolbutton.classList.add('coolass_button_second');
+        },600);
+        setTimeout(function(){
+        coolbutton.classList.add('coolass_button_third');
+        },700);
+        setTimeout(function(){
+        coolbutton.classList.add('coolass_button_final');
+        },1800);
+        setTimeout(function(){
+            coolbutton.classList.remove('coolass_button_final');
+            coolbutton.classList.remove('coolass_button_third');
+            coolbutton.classList.remove('coolass_button_second');
+            coolbutton.classList.remove('coolass_button_bridge1');
+            coolbutton.classList.remove('coolass_button_first');
+            inprogress = false;
+        },3200)
+    };
+
+
+    var count = 1
+setTimeout(demo, 500)
+setTimeout(demo, 700)
+setTimeout(demo, 900)
+setTimeout(reset, 2000)
+
+setTimeout(demo, 2500)
+setTimeout(demo, 2750)
+setTimeout(demo, 3050)
+
+
+var mousein = false
+
+function reset() {
+   count = 1
+   var hovers = document.querySelectorAll('.hover')
+   for(var i = 0; i < hovers.length; i++ ) {
+      hovers[i].classList.remove('hover')
+   }
+}
+
+document.addEventListener('mouseover', function() {
+   mousein = true
+   reset()
+})
+
+
+
+
+    </script>
+    <script src="js/custom-file-input.js"></script>
+</body>
+</html>
